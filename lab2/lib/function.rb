@@ -51,7 +51,11 @@ class Function
     op == 1 ? 0 : 1
   end
 
-  def and(op1, op2, op3)
+  def and2(op1, op2)
+    op1 & op2
+  end
+
+  def and3(op1, op2, op3)
     op1 & op2 & op3
   end
 

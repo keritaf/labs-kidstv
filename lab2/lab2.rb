@@ -3,12 +3,12 @@ require 'highline/import'
 require 'pry'
 require 'colorize'
 
-f1 = Function.new(7,  "and",  2, Input.new(0), Input.new(1))
+f1 = Function.new(7,  "and2",  2, Input.new(0), Input.new(1))
 f2 = Function.new(8,  "no",   1, Input.new(2))
 f3 = Function.new(9,  "or",   2, Input.new(4), Input.new(5))
-f4 = Function.new(10, "and",  3, Input.new(3), Input.new(9), Input.new(6) )
+f4 = Function.new(10, "and3",  3, Input.new(3), Input.new(9), Input.new(6) )
 f5 = Function.new(11, "nor",  2, Input.new(8), Input.new(10))
-f6 = Function.new(12, "and",  2, Input.new(7), Input.new(11))
+f6 = Function.new(12, "and2",  2, Input.new(7), Input.new(11))
 
 schema = {
   f1 => [f6],
