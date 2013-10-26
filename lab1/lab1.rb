@@ -13,6 +13,8 @@ F4 = Function.new('and', 3, F2, 6)
 F5 = Function.new('or',  F1, F4)
 F6 = Function.new('and', Not.new(F3), F5)
 
+FUNCTIONS = [F1, F2, F3, F4, F5, F6]
+
 node   = ask("Node(F1-F6): ") { |n| n.default = "F4" }
 value  = ask("Value(0|1): ")  { |val| val.default = "0" }
 
