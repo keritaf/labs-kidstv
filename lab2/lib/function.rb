@@ -4,30 +4,29 @@ class Function
 
   SINGULAR_CUBES = {
     #           0 1 2 3 4 5 6 7 8 9 0 1 2
-    '7'  => [%w(0 0 x x x x x 0 x x x x x),
-             %w(0 1 x x x x x 1 x x x x x),
-             %w(1 0 x x x x x 1 x x x x x),
-             %w(1 1 x x x x x 0 x x x x x)],
+    '7'  => [%w(x 0 x x x x x 0 x x x x x),
+             %w(0 x x x x x x 0 x x x x x),
+             %w(1 1 x x x x x 1 x x x x x)],
 
     '8'  => [%w(x x 0 x x x x x 1 x x x x),
              %w(x x 1 x x x x x 0 x x x x)],
 
-    '9'  => [%w(x x x x 0 0 x x x 1 x x x),
-             %w(x x x x x 1 x x x 0 x x x),
-             %w(x x x x 1 x x x x 0 x x x)],
+    '9'  => [%w(x x x x 0 0 x x x 0 x x x),
+             %w(x x x x x 1 x x x 1 x x x),
+             %w(x x x x 1 x x x x 1 x x x)],
 
-    '10' => [%w(x x x 0 x x x x x x 1 x x),
-             %w(x x x x x x 0 x x x 1 x x),
-             %w(x x x x x x x x x 0 1 x x),
-             %w(x x x 1 x x 1 x x 1 0 x x)],
+    '10' => [%w(x x x 0 x x x x x x 0 x x),
+             %w(x x x x x x 0 x x x 0 x x),
+             %w(x x x x x x x x x 0 0 x x),
+             %w(x x x 1 x x 1 x x 1 1 x x)],
 
-    '11' => [%w(x x x x x x x x 0 x 0 0 x),
-             %w(x x x x x x x x x x 1 1 x),
-             %w(x x x x x x x x 1 x x 1 x)],
+    '11' => [%w(x x x x x x x x 0 x 0 1 x),
+             %w(x x x x x x x x x x 1 0 x),
+             %w(x x x x x x x x 1 x x 0 x)],
 
-    '12' => [%w(x x x x x x x 0 x x x 0 1),
-             %w(x x x x x x x x x x x 1 0),
-             %w(x x x x x x x 1 x x x x 0)]
+    '12' => [%w(x x x x x x x 1 x x x 1 1),
+             %w(x x x x x x x x x x x 0 0),
+             %w(x x x x x x x 0 x x x x 0)]
   }
 
   def initialize(position, operation, inputs_number, *inputs)
@@ -52,8 +51,12 @@ class Function
     op == 1 ? 0 : 1
   end
 
+  def and(op1, op2, op3)
+    op1 & op2 & op3
+  end
+
   def nand(op1, op2, op3)
-    not(op1 & op2 & op3)
+    no(op1 & op2 & op3)
   end
 
   def xor(op1, op2)

@@ -1,6 +1,8 @@
 class DCube
 
   attr_accessor :cube, :prev_cube
+  NOT_D = "d\u0305"
+  EMPTY = "\u2205"
 
   def initialize
     self.cube = %W( x x x x x x x x x x x x x )
@@ -32,14 +34,12 @@ class DCube
     zeros = function.singulars.select{|cube| cube[output_index] == "0"}
     ones  = function.singulars.select{|cube| cube[output_index] == "1"}
     result = []
-    binding.pry
     zeros.each do |zero|
       ones.each do |one|
         res = DCube.d_intersect_cubes zero, one
         result << res unless have_empty?(res)
       end
     end
-    binding.pry
     ones.each do |one|
       zeros.each do |zero|
         res = DCube.d_intersect_cubes one, zero
@@ -61,13 +61,14 @@ class DCube
     if (a == "1") && (b == "0")
       return 'd'
     elsif (a == "0") && (b == "1")
-      return 'nd'
+      return NOT_D
     elsif (a == b) || (b == "x")
       return a
     elsif (b == a) || (a == "x")
       return b
     else
-      "e"
+      EMPTY
+      #
     end
   end
 
@@ -85,12 +86,12 @@ class DCube
     elsif (b == a) || (a == "x")
       return b
     else
-      "e"
+      EMPTY
     end
   end
 
   def self.have_empty?(cube = self.cube)
-    cube.select{ |el| el == "e"}.any?
+    cube.select{ |el| el == EMPTY}.any?
   end
 
   def check_empty
@@ -98,7 +99,7 @@ class DCube
   end
 
   def have_empty?(cube = self.cube)
-    cube.select{ |el| el == "e"}.any?
+    cube.select{ |el| el == EMPTY}.any?
   end
 
   def intersect_with(cube1)
@@ -114,13 +115,13 @@ class DCube
     if (a == "1") && (b == "0")
       return 'd'
     elsif (a == "0") && (b == "1")
-      return 'nd'
+      return NOT_D
     elsif (a == b) || (b == "x")
       return a
     elsif (b == a) || (a == "x")
       return b
     else
-      "e"
+      EMPTY
     end
   end
 
