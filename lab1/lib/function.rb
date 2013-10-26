@@ -15,8 +15,6 @@ class Function
     self.send("#{@operation}#{num}", *values)
   end
 
-  private
-
   def not(op)
     op == 1 ? 0 : 1
   end
@@ -35,6 +33,10 @@ class Function
 
   def and3(op1, op2, op3)
     op1 & op2 & op3
+  end
+
+  def nor2(op1, op2)
+    self.not(or2(op1, op2))
   end
 
 end
