@@ -2,15 +2,19 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.0.9)
+    highline (1.6.20)
     method_source (0.8.2)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
     slop (3.4.6)
+    turbine-graph (0.1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  highline
   pry
+  turbine-graph
