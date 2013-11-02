@@ -6,7 +6,6 @@ class SwitchCounter
   end
 
   def count
-    binding.pry
     states[0...-1].zip(states[1..-1]).map{|first, last| switches(first, last)}.inject(:+)
   end
 
