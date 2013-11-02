@@ -8,6 +8,7 @@ class FaultPrinter
 
   def print(io)
     io.puts headers
+    io.puts '-' * headers.size
     @faults.each do |test, faults|
       io.puts format(test, faults)
     end

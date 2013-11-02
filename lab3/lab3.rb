@@ -11,11 +11,11 @@ FaultPrinter.new(faults).print($stdout)
 
 min_tests = FaultMinFinder.new(faults).perform
 
-puts "Minimum tests:"
+puts "\nMinimum tests:".cyan
 puts min_tests.map(&:inspect).join("\n")
-puts "Number of switches: #{SwitchCounter.new(min_tests).count}"
+puts "Number of switches: ".red + "#{SwitchCounter.new(min_tests).count}"
 
 optional = SwitchAnalyzer.new(min_tests).analyze
-puts "Optinal flow:"
+puts "\nOptinal flow:".cyan
 puts optional[:tests].map(&:inspect).join("\n")
-puts "Number of switches: #{optional[:switches]}"
+puts "Number of switches: ".red + "#{optional[:switches]}"
