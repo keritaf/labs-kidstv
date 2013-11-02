@@ -9,7 +9,7 @@ class FaultHunter
   end
 
   def faults
-    {zeros: const_faults(0), ones: const_faults(1)}
+    {signals: signals, zeros: const_faults(0), ones: const_faults(1)}
   end
 
   def const_faults(signal)
@@ -18,6 +18,16 @@ class FaultHunter
     MOCKS.each_with_object([]) do |mock, errors|
       scheme = Scheme.new(mock: {mock => signal})
       errors << mock if scheme.process(@test) != standart
+    end
+
+  end
+
+  def signals
+    scheme = Scheme.new
+    scheme.process(@test)
+
+    OUTPUTS.each_with_object({}) do |signal, hash|
+      hash[signal] = scheme.send(signal)
     end
 
   end
