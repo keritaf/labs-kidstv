@@ -2,6 +2,8 @@ class Scheme
 
   INPUTS = 7
 
+  attr_writer :signals
+
   def initialize(mock: {})
     @mock = mock
   end
@@ -39,6 +41,10 @@ class Scheme
   def process(signals)
     @signals = signals
     f6
+  end
+
+  def state
+    [x0, x1, x2, x3, x4, x5, x6, x6, f1, f2, f3, f4, f5, f6]
   end
 
 end

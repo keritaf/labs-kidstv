@@ -24,7 +24,7 @@ class FaultHunter
 
   def signals
     scheme = Scheme.new
-    scheme.process(@test)
+    scheme.signals = @test
 
     OUTPUTS.each_with_object({}) do |signal, hash|
       hash[signal] = scheme.send(signal)

@@ -1,4 +1,5 @@
 class FaultMinFinder
+
   def initialize(faults)
     @faults = faults
   end

@@ -7,6 +7,15 @@ tests = (0..2**Scheme::INPUTS-1).map{|i| ("%0#{Scheme::INPUTS}d" % i.to_s(2)).ea
 
 faults = tests.each_with_object({}) { |test, h| h[test] = FaultHunter.new(test).faults }
 
-# FaultPrinter.new(faults).print($stdout)
+FaultPrinter.new(faults).print($stdout)
 
 min_tests = FaultMinFinder.new(faults).perform
+
+puts "Minimum tests:"
+puts min_tests.map(&:inspect).join("\n")
+puts "Number of switches: #{SwitchCounter.new(min_tests).count}"
+
+optional = SwitchAnalyzer.new(min_tests).analyze
+puts "Optinal flow:"
+puts optional[:tests].map(&:inspect).join("\n")
+puts "Number of switches: #{optional[:switches]}"
