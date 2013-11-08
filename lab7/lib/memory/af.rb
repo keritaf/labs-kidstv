@@ -1,8 +1,10 @@
+require_relative 'base'
+
 module Memory
-  class Af
+  class Af < Base
     def initialize(size)
-      super
-      @bad = Array.new(size * rand(0.0..0.1)) { rand(size - 1) }
+      super(size)
+      @bad = Array.new(number_bad_cells) { rand(size - 1) }
     end
 
     def [](i)

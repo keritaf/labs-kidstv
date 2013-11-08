@@ -3,11 +3,13 @@ require 'pry'
 require 'highline/import'
 require 'colorize'
 
-MBit = 1024 * 1024
-SIZE = 8 #* MBit
+# 9
 
-mem = Memory::Base.new(SIZE)
+MBit = 1024 * 1024
+SIZE = 8 * 8 #* MBit
+
+mem = Memory::Anpsf.new(SIZE, 9)
+
 binding.pry
 
 
-# 9

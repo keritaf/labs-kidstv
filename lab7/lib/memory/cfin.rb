@@ -1,8 +1,10 @@
+require_relative 'base'
+
 module Memory
-  class Cfin
+  class Cfin < Base
     def initialize(size)
-      super
-      @bad_hash = Hash[Array.new(size * rand(0.0..0.1)) { [rand(size-1), rand(size - 1)] }]
+      super(size)
+      @bad_hash = Hash[Array.new(number_bad_cells) { [rand(size-1), rand(size - 1)] }]
     end
 
     def []=(i, val)

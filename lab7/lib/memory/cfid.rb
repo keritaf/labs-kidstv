@@ -1,3 +1,5 @@
+require_relative 'cfin'
+
 module Memory
   class Cfid < Cfin
 
