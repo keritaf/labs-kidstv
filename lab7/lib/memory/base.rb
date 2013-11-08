@@ -1,8 +1,11 @@
 module Memory
   class Base
+    attr_reader :bad
+
     def initialize(size)
       @size = size
       @memory = Array.new(size) { rand(0..1) }
+      @bad = Set.new([])
     end
 
     def [](i)

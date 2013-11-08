@@ -6,7 +6,8 @@ module Memory
     def initialize(size, neighbors)
       super(size)
       @neighbors = neighbors - 1
-      @bad_hash = Hash[Array.new(number_bad_cells) { [rand(size - 1), Array.new(@neighbors) {rand(0..1)}] }]
+      @bad = Set.new(Array.new(number_bad_cells) { rand(size-1) })
+      @bad_hash = Hash[@bad.map { |cell| [cell, Array.new(@neighbors) {rand(0..1)}] }]
     end
 
     def []=(i, val)

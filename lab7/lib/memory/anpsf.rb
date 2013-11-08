@@ -6,8 +6,8 @@ module Memory
     def initialize(size, neighbors)
       super(size)
       @neighbors = neighbors - 1
-      bad_cells = Array.new(number_bad_cells) { rand(size - 1) }
-      @bad_hash = bad_cells.each_with_object({}) do |cell, hash|
+      @bad = Set.new(Array.new(number_bad_cells) { rand(size - 1) })
+      @bad_hash = @bad.each_with_object({}) do |cell, hash|
         neighbors(cell).each { |neighbor| hash[neighbor] = cell }
       end
     end

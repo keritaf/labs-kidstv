@@ -4,7 +4,8 @@ module Memory
   class Cfin < Base
     def initialize(size)
       super(size)
-      @bad_hash = Hash[Array.new(number_bad_cells) { [rand(size-1), rand(size - 1)] }]
+      @bad = Set.new(Array.new(number_bad_cells) { rand(size-1) })
+      @bad_hash = Hash[@bad.map { |cell| [cell, rand(size - 1)] }]
     end
 
     def []=(i, val)

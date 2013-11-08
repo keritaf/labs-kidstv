@@ -4,7 +4,7 @@ module Memory
   class Saf < Base
     def initialize(size)
       super(size)
-      @bad = Array.new(number_bad_cells) { rand(size - 1) }
+      @bad = Set.new(Array.new(number_bad_cells) { rand(size - 1) })
     end
 
     def [](i)
