@@ -27,28 +27,20 @@ module Tests
       @r1 ||= ->(i) { @errors << i unless @memory[i] == 1 }
     end
 
-    def before(i, *args)
-      return if i < WINDOW
-      args.each do |arg|
-        index = i - num
-        arg.call(index)
+    def before(*args)
+      (@size - 1).downto(0) do |i|
+        args.each { |arg| arg.call(i) }
       end
     end
 
-    def after(i, *args)
-      return if i > @size - WINDOW
-      args.each do |arg|
-        index = i + num
-        arg.call(index)
+    def after(*args)
+      0.upto(@size - 1) do |i|
+        args.each { |arg| arg.call(i) }
       end
     end
 
-    def random(i, *args)
-      args.each do |arg|
-        sign = rand(0.0..1.0) > 0.5 ? -1 : 1
-        index = i + sign * num
-        arg.call(index)
-      end
+    def random(*args)
+      rand(0.0..1.0) > 0.5 ? before(*args) : after(*args)
     end
 
     def num

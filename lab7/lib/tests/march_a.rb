@@ -6,13 +6,11 @@ module Tests
     WINDOW = 15
 
     def perform
-      0.upto(@size-1) do |i|
-        random(i, w0)
-        after(i, r0, w1, w0, w1)
-        after(i, r1, w0, w1)
-        before(i, r1, w0, w1, w0)
-        before(i, r0, w1, w0)
-      end
+      random(w0)
+      after(r0, w1, w0, w1)
+      after(r1, w0, w1)
+      before(r1, w0, w1, w0)
+      before(r0, w1, w0)
     end
 
   end
