@@ -1,3 +1,5 @@
+require 'set'
+
 module Memory
   class Base
     attr_reader :bad
