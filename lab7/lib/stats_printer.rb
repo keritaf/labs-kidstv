@@ -1,6 +1,6 @@
 class StatsPrinter
-  HEADER_WIDTH = 80
-  WIDTH = 13
+  HEADER_WIDTH = 141
+  WIDTH = 25
 
   def initialize(memory_name, errors, detected)
     @memory_name, @errors, @detected = memory_name, errors, detected

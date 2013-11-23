@@ -17,6 +17,10 @@ module Memory
       @memory[i] = val
     end
 
+    def name
+      "#{self.class.name}#{@neighbors}"
+    end
+
     protected
 
     def neighbors_values_for(cell)
