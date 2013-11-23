@@ -6,16 +6,18 @@ require 'colorize'
 # 9
 # GALPAT March A March PS
 
-MBit = 1024 * 1024
+Mbit = 1024 * 1024
 SIZE = 8 * 1024
+ANSPF = 5
+PNPSF = 9
 
 mems = []
 
 mems << Memory::Base.new(SIZE)
 mems << Memory::Af.new(SIZE)
 mems << Memory::Saf.new(SIZE)
-mems << Memory::Anpsf.new(SIZE, 5)
-mems << Memory::Pnpsf.new(SIZE, 9)
+1.upto(ANSPF-1) { |i| mems << Memory::Anpsf.new(SIZE, ANSPF, i) }
+mems << Memory::Pnpsf.new(SIZE, PNPSF)
 
 Memory::Cfin::ADDRESS.each do |addr|
   Memory::Cfin::DIRECTION.each do |dir|

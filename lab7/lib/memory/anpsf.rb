@@ -3,12 +3,13 @@ require_relative 'base'
 module Memory
   class Anpsf < Base
 
-    def initialize(size, neighbors)
+    def initialize(size, neighbors, position)
       super(size)
       @neighbors = neighbors - 1
+      @position = position-1
       @bad = Set.new(Array.new(number_bad_cells) { rand(size - 1) })
       @bad_hash = @bad.each_with_object({}) do |cell, hash|
-        neighbors(cell).each { |neighbor| hash[neighbor] = cell }
+        hash[neighbor(cell, position)] = cell
       end
     end
 
@@ -20,14 +21,14 @@ module Memory
     end
 
     def name
-      "#{self.class.name}#{@neighbors+1}"
+      "#{self.class.name}#{@neighbors+1}<#{@position}>"
     end
 
     protected
 
-    def neighbors(cell)
+    def neighbor(cell, position)
       half = @neighbors/2
-      [[*cell-half..cell-1], [*cell+1..cell+half]].flatten
+      [[*cell-half..cell-1], [*cell+1..cell+half]].flatten[@position]
     end
 
   end

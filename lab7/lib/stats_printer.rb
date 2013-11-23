@@ -7,6 +7,7 @@ class StatsPrinter
   end
 
   def self.print_header(name)
+    printf "\n"
     puts "*".cyan * HEADER_WIDTH
     puts name.to_s.center(HEADER_WIDTH).cyan
     puts "*".cyan * HEADER_WIDTH
@@ -16,7 +17,7 @@ class StatsPrinter
   end
 
   def print
-    puts "| #{@memory_name.to_s.center(WIDTH)} | #{@errors.count.to_s.center(WIDTH)} | #{correct_errors.count.to_s.center(WIDTH)} | #{wrong_errors.count.to_s.center(WIDTH)} | #{efficiency.round(2).to_s.center(WIDTH)} |"
+    puts "| #{@memory_name.to_s.center(WIDTH)} | #{@errors.count.to_s.center(WIDTH)} | #{correct_errors.count.to_s.center(WIDTH)} | #{wrong_errors.count.to_s.center(WIDTH)} | #{(efficiency*100).round(2).to_s.center(WIDTH)} |"
   end
 
   def wrong_errors
