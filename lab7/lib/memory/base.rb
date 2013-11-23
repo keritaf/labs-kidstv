@@ -24,6 +24,10 @@ module Memory
       @number_bad_cells = number == 0 ? 1 : number
     end
 
+    def name
+      self.class.name
+    end
+
     protected
 
     def inverse(val)

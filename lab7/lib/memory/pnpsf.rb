@@ -11,7 +11,6 @@ module Memory
     end
 
     def []=(i, val)
-      binding.pry
       if value = @bad_hash[i]
         return if value == neighbors_values_for(i)
       end

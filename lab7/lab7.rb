@@ -1,5 +1,4 @@
-require 'require_all'
-require_all 'lib'
+Dir[File.expand_path('../lib/**/*.rb', __FILE__)].each {|f| require f}
 require 'pry'
 require 'highline/import'
 require 'colorize'
@@ -8,35 +7,25 @@ require 'colorize'
 # GALPAT March A March PS
 
 MBit = 1024 * 1024
-SIZE = 8 * 8
+SIZE = 8 * 256
 
-mem  = Memory::Base.new(SIZE)
-af   = Memory::Af.new(SIZE)
-saf  = Memory::Saf.new(SIZE)
-cfid = Memory::Cfid.new(SIZE)
-cfin = Memory::Cfin.new(SIZE)
+mems = []
 
-puts "Galpat".cyan
-[mem, af, saf, cfid, cfin].each do |memory|
-  galpat = Tests::Galpat.new(memory, SIZE)
-  galpat.perform
+mems << Memory::Base.new(SIZE)
+mems << Memory::Af.new(SIZE)
+mems << Memory::Saf.new(SIZE)
+mems << Memory::Cfid.new(SIZE)
+mems << Memory::Cfin.new(SIZE)
+mems << Memory::Anpsf.new(SIZE, 5)
+mems << Memory::Pnpsf.new(SIZE, 9)
 
-  puts "#{galpat.errors.inspect}[#{galpat.errors.count}] <=> #{memory.bad.inspect}[#{memory.bad.count}]"
+tests = [Tests::Galpat, Tests::MarchA, Tests::MarchPs]
+
+tests.each do |test_class|
+  StatsPrinter.print_header(test_class)
+  mems.each do |memory|
+    test = test_class.new(memory, SIZE)
+    test.perform
+    StatsPrinter.new(memory.name, memory.bad, test.errors).print
+  end
 end
-
-puts "March A".cyan
-[mem, af, saf, cfid, cfin].each do |memory|
-  march = Tests::MarchA.new(memory, SIZE)
-  march.perform
-
-  puts "#{march.errors.inspect}[#{march.errors.count}] <=> #{memory.bad.inspect}[#{memory.bad.count}]"
-end
-
-puts "March PS".cyan
-[mem, af, saf, cfid, cfin].each do |memory|
-  march = Tests::MarchA.new(memory, SIZE)
-  march.perform
-
-  puts "#{march.errors.inspect}[#{march.errors.count}] <=> #{memory.bad.inspect}[#{memory.bad.count}]"
-end
-
