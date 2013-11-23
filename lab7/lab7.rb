@@ -7,7 +7,7 @@ require 'colorize'
 # GALPAT March A March PS
 
 MBit = 1024 * 1024
-SIZE = 8 * 128
+SIZE = 8 * 1024
 
 mems = []
 
@@ -20,11 +20,13 @@ mems << Memory::Pnpsf.new(SIZE, 9)
 Memory::Cfin::ADDRESS.each do |addr|
   Memory::Cfin::DIRECTION.each do |dir|
     mems << Memory::Cfin.new(SIZE, addr, dir)
+    Memory::Cfid::VALUES.each do |val|
+      mems << Memory::Cfid.new(SIZE, addr, dir, val)
+    end
   end
 end
-# mems << Memory::Cfid.new(SIZE)
 
-tests = [Tests::Galpat, Tests::MarchA, Tests::MarchPs]
+tests = [Tests::MarchA, Tests::MarchPs, Tests::Galpat]
 
 tests.each do |test_class|
   StatsPrinter.print_header(test_class)

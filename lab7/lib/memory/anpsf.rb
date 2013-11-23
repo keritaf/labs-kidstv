@@ -20,7 +20,7 @@ module Memory
     end
 
     def name
-      "#{self.class.name}#{@neighbors}"
+      "#{self.class.name}#{@neighbors+1}"
     end
 
     protected
